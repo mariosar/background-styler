@@ -1,6 +1,6 @@
 {
   "name": "background-styler",
-  "version": "1.0.013",
+  "version": "1.0.0135",
   "description": "A helper for styling background and background-image.",
   "main": "index.js",
   "scripts": {
