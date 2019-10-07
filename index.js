@@ -31,7 +31,7 @@ var movingBG = function(){
   }
 
   return {
-    cycle: function(){
+    run: function(){
     	var self = this
       var i = 0
       var interval = setInterval(function(){
@@ -44,7 +44,7 @@ var movingBG = function(){
         if(i == 400){
           clearInterval(interval)
           switchRGB()
-          self.cycle()
+          self.run()
         } else {
           i++
         }
