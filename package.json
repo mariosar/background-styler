@@ -1,0 +1,11 @@
+{
+  "name": "background-styler",
+  "version": "1.0.0123",
+  "description": "A helper for styling background and background-image.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mario Saraiva",
+  "license": "ISC"
+}
