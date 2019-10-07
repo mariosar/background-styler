@@ -1,10 +1,12 @@
-var movingBG = function(){
-	var bg = [80, 20, 155]
-	var bg2 = [35, 5, 92]
-	var bgDone = [60, 30, 100]
-	var bg2Done = [50, 25, 10]
+var movingBG = function(config){
+	var bg = config.start[0]
+	var bg2 = config.start[1]
+	var bgDone = config.end[0]
+	var bg2Done = config.end[1]
 
-  var time = 4000
+  var time = config.time
+
+  var intervalFrequency = 10
 
   function switchRGB(){
     var placeholder = bg2
@@ -26,8 +28,9 @@ var movingBG = function(){
 
   function setRGB(rgb, rgb2){
     var backgroundColor = "linear-gradient(65deg, rgb("+rgb.join(", ")+"), rgb("+rgb2.join(", ")+")) repeat scroll 0% 0%"
-    $(".moving-bg")[0].style.background = backgroundColor
-    $(".moving-bg")[1].style.background = backgroundColor
+    $(".moving-bg").each(function(index){
+      this.style.background = backgroundColor
+    })
   }
 
   return {
@@ -36,19 +39,21 @@ var movingBG = function(){
       var i = 0
       var interval = setInterval(function(){
         
-        var newRGB = calculateRGB(bg, bg2, i, 400)
-        var newRGB2 = calculateRGB(bgDone, bg2Done, i, 400)
+        var newRGB = calculateRGB(bg, bg2, i, time / intervalFrequency)
+        var newRGB2 = calculateRGB(bgDone, bg2Done, i, time / intervalFrequency)
         
         setRGB(newRGB, newRGB2)
         
         if(i == 400){
           clearInterval(interval)
           switchRGB()
-          self.run()
+          if(config.cycle){
+            self.run()  
+          }
         } else {
           i++
         }
-      }, 10)
+      }, intervalFrequency)
     }
   }
 };
